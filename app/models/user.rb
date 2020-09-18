@@ -20,6 +20,12 @@ class User < ApplicationRecord
         following.include?(user)
     end
 
+    def user_stats
+        stats = [
+            {:user_types => self.types.category}
+        ]
+    end
+
     has_secure_password
     validates :username, uniqueness: { case_sensitive: false }
 end
