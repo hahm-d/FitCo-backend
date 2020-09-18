@@ -11,7 +11,8 @@ Type.destroy_all
    User.create(
         username: Faker::Name.name_with_middle,
         email: Faker::Internet.free_email,
-        password: "123456"
+        password: "123456",
+        flag: true
    ) 
 end
 #Post by coaches/instructors

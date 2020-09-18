@@ -1,11 +1,22 @@
 class Api::V1::UsersController < ApplicationController
     before_action :find_user, only: [:update, :user_stats]
-    skip_before_action :authorized, only: [:index, :create, :update, :destroy]
+    skip_before_action :authorized, only: [:index, :coach_index, :retrieve_coach_posts, :create, :update, :destroy]
 
 
     def index
       users = User.all
-      render json: users.to_json(only: [:id, :username, :status])
+      render json: users.to_json(only: [:id, :username, :status, :flag])
+    end
+
+    def coach_index
+      coaches = User.all.select{ |user| user[:flag] == true}
+      render json: coaches.to_json(only: [:id, :username, :status, :flag])
+    end
+
+    def retrieve_coach_posts
+      posts = @user.posts
+      posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
+      render json: posts.to_json
     end
 
     def profile
@@ -37,11 +48,11 @@ class Api::V1::UsersController < ApplicationController
 
     private
       def user_params
-        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description)
+        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description, :flag)
       end
 
       def user_edit_params
-        params.require(:user).permit(:email, :instagram, :twitter, :status, :description)
+        params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag)
       end
 
       def find_user
