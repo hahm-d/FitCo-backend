@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-    before_action :find_post, only: [:show, :destroy, :update]
-    
+    skip_before_action :authorized, only: [:index, :show]
+    before_action :find_post, only: [ :show, :destroy, :update, :getComments]
+
     def index 
         posts = Post.all
         posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
@@ -32,6 +33,10 @@ class PostsController < ApplicationController
     def destroy 
         @post.destroy
         render json: current_user.posts.to_json
+    end
+
+    def getComments
+        render json: @post.comments.to_json
     end
 
     private
