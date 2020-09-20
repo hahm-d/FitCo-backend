@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
 
     def coach_index
       coaches = User.all.select{ |user| user[:flag] == true}
-      render json: coaches.to_json(only: [:id, :username, :status, :flag])
+      render json: coaches.to_json(only: [:id, :username, :email, :instagram, :twitter, :status, :description, :flag]), include: :comments
     end
 
     def retrieve_coach_posts
