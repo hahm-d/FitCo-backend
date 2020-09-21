@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'api/v1/users/coaches', to: 'api/v1/users#coach_index'
   get 'api/v1/users/:id/posts', to: 'api/v1/users#retrieve_coach_posts'
+  get 'api/v1/users/:id/following', to: 'api/v1/users#user_following'
+  get 'api/v1/users/:id/followers', to: 'api/v1/users#user_followers'
+
   namespace :api do
     namespace :v1 do
       resources :users

@@ -1,7 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :find_user, only: [:update, :user_stats]
+    before_action :find_user, only: [:update, :user_stats, :user_following, :user_followers, :retrieve_coach_posts]
     skip_before_action :authorized, only: [:index, :coach_index, :retrieve_coach_posts, :create, :update, :destroy]
-
 
     def index
       users = User.all
@@ -13,10 +12,20 @@ class Api::V1::UsersController < ApplicationController
       render json: coaches.to_json(only: [:id, :username, :email, :instagram, :twitter, :status, :description, :flag]), include: :comments
     end
 
+    def user_following
+      following = @user.following
+      render json: following.to_json(only: [:id, :username, :email, :instagram, :twitter, :status, :description, :flag])
+    end
+
+    def user_followers
+      followers = @user.followers
+      render json: followers.to_json(only: [:id, :username, :email, :status, :description, :flag])
+    end
+
     def retrieve_coach_posts
       posts = @user.posts
       posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
-      render json: posts.to_json
+      render json: posts.to_json 
     end
 
     def profile
@@ -48,11 +57,11 @@ class Api::V1::UsersController < ApplicationController
 
     private
       def user_params
-        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description, :flag)
+        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description, :flag, :avatar)
       end
 
       def user_edit_params
-        params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag)
+        params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag, :avatar)
       end
 
       def find_user
