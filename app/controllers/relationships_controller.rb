@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
             render json: { confirmation: 'failed request'}
         else
             @user.follow(coach)
-            render json: { confirmation: 'Now Following'}, status: :created
+            render json: coach.to_json, status: :created
         end
     end
 
@@ -15,7 +15,7 @@ class RelationshipsController < ApplicationController
         coach = User.find(params[:coach_id])
         if @user.following?(coach)
             @user.unfollow(coach)
-            render json: { confirmation: 'UnFollowing'}, status: :created
+            render json: coach.to_json, status: :created
         else
             render json: { confirmation: 'failed request'}
         end
