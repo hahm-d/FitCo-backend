@@ -12,6 +12,8 @@ Type.destroy_all
         username: Faker::Name.name_with_middle,
         email: Faker::Internet.free_email,
         password: "12345",
+        status: "online",
+        description: "Yoga is the way of life. Follow me!"
         flag: true
    ) 
 end
