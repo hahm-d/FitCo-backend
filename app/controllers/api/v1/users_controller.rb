@@ -8,8 +8,9 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def coach_index
-      coaches = User.all.select{ |user| user[:flag] == true}
-      render json: coaches.to_json(only: [:id, :username, :email, :instagram, :twitter, :status, :description, :flag]), include: :comments
+      test = User.all
+      @coaches = test.select{ |user| user[:flag] == true}
+      render json: @coaches
     end
 
     def user_following
@@ -25,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
     def retrieve_coach_posts
       posts = @user.posts
       posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
-      render json: posts.to_json 
+      render json: posts.to_json, include: :image
     end
 
     def profile
@@ -57,11 +58,11 @@ class Api::V1::UsersController < ApplicationController
 
     private
       def user_params
-        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description, :flag, :avatar)
+        params.require(:user).permit(:username, :password, :email, :instagram, :twitter, :status, :description, :flag, :image)
       end
 
       def user_edit_params
-        params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag, :avatar)
+        params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag, :image)
       end
 
       def find_user

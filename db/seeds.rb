@@ -28,17 +28,18 @@ end
     )
 end
 
-User.first.avatar.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/raymeProfile.png'), filename: 'raymeProfile.png', content_type: 'image/png')
-Post.first.images.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme1.png'), filename: 'rayme1.png', content_type: 'image/png')
-Post.first.images.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme2.png'), filename: 'rayme2.png', content_type: 'image/png')
-Post.second.images.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme3.png'), filename: 'rayme3.png', content_type: 'image/png')
-Post.third.images.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme4.png'), filename: 'rayme4.png', content_type: 'image/png')
+User.first.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/raymeProfile.png'), filename: 'raymeProfile.png', content_type: 'image/png')
+Post.first.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme1.png'), filename: 'rayme1.png', content_type: 'image/png')
+Post.first.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme2.png'), filename: 'rayme2.png', content_type: 'image/png')
+Post.second.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme3.png'), filename: 'rayme3.png', content_type: 'image/png')
+Post.third.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme4.png'), filename: 'rayme4.png', content_type: 'image/png')
 
 #comments that belong to user & post
 3.times do
     Comment.create(
         comment: "wow! great post",
-        post: Post.all.first,
+        post: Post.all.last,
+        username: Post.all.last,
         commenter_id: User.all.last.id
     )
 end
