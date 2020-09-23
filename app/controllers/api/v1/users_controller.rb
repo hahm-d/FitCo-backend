@@ -15,18 +15,18 @@ class Api::V1::UsersController < ApplicationController
 
     def user_following
       following = @user.following
-      render json: following.to_json(only: [:id, :username, :email, :instagram, :twitter, :status, :description, :flag])
+      render json: following
     end
 
     def user_followers
       followers = @user.followers
-      render json: followers.to_json(only: [:id, :username, :email, :status, :description, :flag])
+      render json: followers
     end
 
     def retrieve_coach_posts
       posts = @user.posts
       posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
-      render json: posts.to_json, include: :image
+      render json: posts, include: :image
     end
 
     def profile

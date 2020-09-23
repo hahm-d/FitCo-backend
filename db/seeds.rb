@@ -40,7 +40,7 @@ end
         url: Faker::Quote.famous_last_words,
         views: Faker::Number.number(digits: 3),
         likes: Faker::Number.number(digits: 1),
-        poster_id: User.all.first.id, 
+        poster_id: User.first.id, 
     )
 end
 
