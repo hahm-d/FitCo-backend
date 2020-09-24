@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
 
     def show 
-        render json: @post.to_json, include: :comments
+        render json: @post.as_json(include: :comments)
     end
 
     def create 
