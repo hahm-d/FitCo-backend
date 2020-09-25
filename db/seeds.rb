@@ -17,7 +17,7 @@ Type.destroy_all
         instagram: "Raymee",
         flag: true
     ) 
-12.times do |i|
+13.times do |i|
   sample = User.create(
             username: Faker::TvShows::RickAndMorty.character,
             email: Faker::Internet.free_email,
@@ -46,11 +46,11 @@ end
 
 #attach images
 User.first.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/raymeProfile.png'), filename: 'raymeProfile.png', content_type: 'image/png')
+Post.first.video.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/raymeVideo.mp4'), filename: 'raymeVideo.mp4', content_type: 'video/mp4')
 Post.first.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme1.png'), filename: 'rayme1.png', content_type: 'image/png')
 Post.second.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme2.png'), filename: 'rayme2.png', content_type: 'image/png')
 Post.third.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme3.png'), filename: 'rayme3.png', content_type: 'image/png')
 Post.fourth.image.attach(io: File.open('/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/rayme4.png'), filename: 'rayme4.png', content_type: 'image/png')
-
 
 
 #comments
@@ -65,7 +65,8 @@ end
 
 #type of fitness coach: boxing, yoga, hit, etc.
 User.all.each do |user|
-    Type.create(category: "Hit Trainer", user_id: user.id )
+    list = ["Hit", "Yoga", "CrossFit", "Boxing", "Cario", "Weight"]
+    Type.create(category: list.sample, user_id: user.id )
 end
 
 

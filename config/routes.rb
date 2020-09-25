@@ -11,7 +11,8 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
     end
   end
-  resources :types, only: [:create, :destroy]
+  
+  resources :types, only: [:index, :create, :destroy]
   resources :comments, only: [:index, :create, :update, :destroy]
   resources :posts
   resources :relationships, only: [:create, :destroy]

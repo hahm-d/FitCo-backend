@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
     def index
       users = User.all
-      render json: users.to_json(only: [:id, :username, :status, :flag])
+      render json: users.as_json(only: [:id, :username, :status, :flag])
     end
 
     def coach_index
@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
     def retrieve_coach_posts
       posts = @user.posts
       posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
-      render json: posts, include: :image
+      render json: posts, include: [:image, :video]
     end
 
     def profile
