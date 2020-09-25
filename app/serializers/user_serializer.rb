@@ -8,11 +8,6 @@ class UserSerializer < ActiveModel::Serializer
         url: rails_blob_url(object.image, default_url_options[:host]),
         cloudinary: object.image.service_url
      }
-    else
-      {
-        url: "",
-        cloudinary: "",
-      }
     end
   end
 

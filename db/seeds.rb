@@ -37,7 +37,6 @@ end
     Post.create(
         title: Faker::Coffee.blend_name,
         content: Faker::Coffee.notes,  
-        url: Faker::Quote.famous_last_words,
         views: Faker::Number.number(digits: 3),
         likes: Faker::Number.number(digits: 1),
         poster_id: User.first.id, 
