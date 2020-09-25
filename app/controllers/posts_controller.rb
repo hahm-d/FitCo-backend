@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     def index 
         posts = Post.all
         posts = posts.sort_by{ |post| [post.created_at, post.updated_at].max }.reverse!
-        render json: posts.to_json
+        render json: posts, include: [:image, :video]
     end
 
     def show 
