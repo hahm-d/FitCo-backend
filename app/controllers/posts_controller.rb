@@ -13,9 +13,11 @@ class PostsController < ApplicationController
     end
 
     def create 
-        post = current_user.posts.create(post_params)
-        if post.valid?
-            render json: post.to_json, status: :created
+        post = Post.new(post_params)
+        post.poster_id = current_user.id
+        post.image.attach(io: image_io, filename: "image_name.png")
+        if post.save
+            render json: post, include: [:image, :video], status: :created
         else
             render json: { error: 'failed to create post' }, status: :not_acceptable
         end
@@ -43,6 +45,15 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(:title, :content, :url, :views, :likes, :image, :video)
+    end
+
+    def image_io
+        decoded_image = Base64.decode64(params[:post][:image])
+         StringIO.new(decoded_image)
+    end
+
+    def image_name
+        params[:post][:file_name]
     end
 
     def find_post
