@@ -8,8 +8,8 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def coach_index
-      test = User.all
-      @coaches = test.select{ |user| user[:flag] == true}
+      allCoach = User.all
+      @coaches = allCoach.select{ |user| user[:flag] == true}
       render json: @coaches
     end
 

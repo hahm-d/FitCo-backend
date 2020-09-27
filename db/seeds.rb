@@ -64,7 +64,7 @@ end
 
 #type of fitness coach: boxing, yoga, hit, etc.
 User.all.each do |user|
-    list = ["Hit", "Yoga", "CrossFit", "Boxing", "Cario", "Weight"]
+    list = [1, 2, 3, 4, 5, 6]
     Type.create(category: list.sample, user_id: user.id )
 end
 

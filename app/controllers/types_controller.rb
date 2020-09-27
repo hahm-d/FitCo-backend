@@ -3,7 +3,7 @@ class TypesController < ApplicationController
     before_action :find_type, only: [:destroy, :update]
 
     def index 
-        types = Type.all
+        types = Type.all.order(:category)
         render json: types.as_json(only: [:id, :category, :user_id])
     end
 

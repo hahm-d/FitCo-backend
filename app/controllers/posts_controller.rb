@@ -9,7 +9,8 @@ class PostsController < ApplicationController
     end
 
     def show 
-        render json: @post.as_json(include: :comments)
+        sortedPost = @post.comments.sort_by{ |comment| [comment.created_at, comment.updated_at].max }.reverse!
+        render json: sortedPost.as_json
     end
 
     def create 
