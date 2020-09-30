@@ -92,6 +92,7 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    localtunnel (1.0.3)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -190,6 +191,7 @@ DEPENDENCIES
   faker (~> 2.14)
   jwt (~> 2.2)
   listen (~> 3.2)
+  localtunnel
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rack-cors
