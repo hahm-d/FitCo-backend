@@ -27,6 +27,7 @@ user2= User.create(
         instagram: "physique",
         flag: true
     ) 
+user2.image.attach(io: File.open("/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/profile#{i+1}.png"), filename: "profile#{i+1}.png", content_type: 'image/png')
 
 #Create Instructors
 21.times do |i|
@@ -40,7 +41,7 @@ user2= User.create(
             instagram: Faker::Games::Dota.player,
             flag: true
     ) 
-sample.image.attach(io: File.open("/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/profile#{i+1}.png"), filename: "profile#{i+1}.png", content_type: 'image/png')
+User.second.image.attach(io: File.open("/Users/daniel/Flatiron/personal/FitCo/FitCo-backend/samples/profile#{i+1}.png"), filename: "june#{i+1}.png", content_type: 'image/png')
 
 end
 
