@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-    before_action :find_user, only: [:update, :user_stats, :user_following, :user_followers, :retrieve_coach_posts]
+    before_action :find_user, only: [:update, :user_stats, :user_following, :user_followers, :retrieve_coach_posts, :update_avatar]
     skip_before_action :authorized, only: [:index, :coach_index, :retrieve_coach_posts, :create, :update, :destroy]
 
     def index
@@ -44,12 +44,17 @@ class Api::V1::UsersController < ApplicationController
     end
    
     def update
+      if params[:image].present? && @user.image.attached?
+        @user.image.purge_later
+      end
+      @user.image.attach(io: image_io, filename: 'avatar.png')
       @user.update_attribute(:email, user_edit_params[:email])
       @user.update_attribute(:instagram, user_edit_params[:instagram])
       @user.update_attribute(:twitter, user_edit_params[:twitter])
       @user.update_attribute(:status, user_edit_params[:status])
       @user.update_attribute(:description, user_edit_params[:description])
-        render json: { user: UserSerializer.new(@user)}
+      
+      render json: { user: UserSerializer.new(@user)}
     end
 
     def user_stats
@@ -63,6 +68,11 @@ class Api::V1::UsersController < ApplicationController
 
       def user_edit_params
         params.require(:user).permit(:email, :instagram, :twitter, :status, :description, :flag, :image)
+      end
+
+      def image_io
+        decoded_image = Base64.decode64(params[:image])
+         StringIO.new(decoded_image)
       end
 
       def find_user

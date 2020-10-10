@@ -17,8 +17,7 @@ class PostsController < ApplicationController
         post = Post.new(post_params)
         post.poster_id = current_user.id
 
-            post.image.attach(io: image_io, filename: 'image.jpeg')
-           # post.video.attach(io: video_io, filename: 'video.mp4')
+        post.image.attach(io: image_io, filename: 'image.png')
         
         if post.save
             render json: post, include: [:image, :video], status: :created
