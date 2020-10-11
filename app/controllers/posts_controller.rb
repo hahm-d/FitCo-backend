@@ -51,12 +51,12 @@ class PostsController < ApplicationController
     end
 
     def image_io
-        decoded_image = Base64.decode64(params[:post][:image])
+        decoded_image = Base64.decode64(params[:image])
          StringIO.new(decoded_image)
     end
     
     def video_io
-        decoded_video = Base64.decode64(params[:post][:video])
+        decoded_video = Base64.decode64(params[:video])
          StringIO.new(decoded_video)
     end
 
