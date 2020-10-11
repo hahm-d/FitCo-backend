@@ -6,6 +6,7 @@ Comment.destroy_all
 Relationship.destroy_all
 Type.destroy_all
 
+=begin 
 #Create manual samples 
 user1 = User.create(
         username: "Raymee",
@@ -122,5 +123,7 @@ end
 Relationship.create(follower_id: User.all.first.id, followed_id: User.all.second.id)
 Relationship.create(follower_id: User.all.first.id, followed_id: User.all.third.id)
 Relationship.create(follower_id: User.all.first.id, followed_id: User.all.last.id)
+=end
+
 
 puts 'completed'

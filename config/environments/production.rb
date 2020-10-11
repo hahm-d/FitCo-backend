@@ -108,4 +108,4 @@ Rails.application.configure do
 end
 
 #this should be fixed in PROD!
-Rails.application.routes.default_url_options[:host] = "localhost:3000"
+Rails.application.routes.default_url_options[:host] = "https://fitco-server.herokuapp.com"
