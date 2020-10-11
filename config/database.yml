@@ -75,11 +75,6 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
-production:
-  <<: *default
-  database: FitCo_backend_production
-  username: FitCo_backend
-  password: <%= ENV['FITCO_BACKEND_DATABASE_PASSWORD'] %>
+   production:
+     url: <%= ENV['DATABASE_URL'] %>
+
