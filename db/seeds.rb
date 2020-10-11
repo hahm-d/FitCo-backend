@@ -27,7 +27,7 @@ user2= User.create(
         instagram: "physique",
         flag: true
     ) 
-user2.image.attach(io: File.open("/Users/daniel/Projects/FitCo/FitCo-backend/samples/june.png"), filename: "june.png", content_type: 'image/png')
+user2.image.attach(io: File.open("samples/june.png"), filename: "june.png", content_type: 'image/png')
 
 #Create Instructors
 21.times do |i|
@@ -41,7 +41,7 @@ user2.image.attach(io: File.open("/Users/daniel/Projects/FitCo/FitCo-backend/sam
             instagram: Faker::Games::Dota.player,
             flag: true
     ) 
-User.second.image.attach(io: File.open("/Users/daniel/Projects/FitCo/FitCo-backend/samples/profile#{i+1}.png"), filename: "profile#{i+1}.png", content_type: 'image/png')
+User.second.image.attach(io: File.open("samples/profile#{i+1}.png"), filename: "profile#{i+1}.png", content_type: 'image/png')
 
 end
 
@@ -85,7 +85,7 @@ Post.create(
         likes: Faker::Number.number(digits: 2),
         poster_id: User.second.id 
     )
-    samplePost.image.attach(io: File.open("/Users/daniel/Projects/FitCo/FitCo-backend/samples/post#{i+1}.png"), filename: "post#{i+1}.png", content_type: 'image/png')
+    samplePost.image.attach(io: File.open("samples/post#{i+1}.png"), filename: "post#{i+1}.png", content_type: 'image/png')
 
 end
 
@@ -94,12 +94,11 @@ end
 
 
 #attach images
-User.first.image.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/raymeProfile.png'), filename: 'raymeProfile.png', content_type: 'image/png')
-Post.first.video.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/raymeVideo.mp4'), filename: 'raymeVideo.mp4', content_type: 'video/mp4')
-Post.first.image.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/rayme1.png'), filename: 'rayme1.png', content_type: 'image/png')
-Post.second.image.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/rayme2.png'), filename: 'rayme2.png', content_type: 'image/png')
-Post.third.image.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/rayme3.png'), filename: 'rayme3.png', content_type: 'image/png')
-Post.fourth.image.attach(io: File.open('/Users/daniel/Projects/FitCo/FitCo-backend/samples/rayme4.png'), filename: 'rayme4.png', content_type: 'image/png')
+User.first.image.attach(io: File.open('samples/raymeProfile.png'), filename: 'raymeProfile.png', content_type: 'image/png')
+Post.first.image.attach(io: File.open('samples/rayme1.png'), filename: 'rayme1.png', content_type: 'image/png')
+Post.second.image.attach(io: File.open('samples/rayme2.png'), filename: 'rayme2.png', content_type: 'image/png')
+Post.third.image.attach(io: File.open('samples/rayme3.png'), filename: 'rayme3.png', content_type: 'image/png')
+Post.fourth.image.attach(io: File.open('samples/rayme4.png'), filename: 'rayme4.png', content_type: 'image/png')
 
 
 #comments
